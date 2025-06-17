@@ -1,0 +1,8 @@
+disutil
+undetected_chromedriver
+selenium.webdriver.common.by
+setuptools
+socket
+threading
+argparse
+Flask

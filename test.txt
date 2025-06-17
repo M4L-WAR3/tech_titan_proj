@@ -1,0 +1,156 @@
+// Initialize r
+let r = 0;
+
+// Step 1: After 1s, set the message
+setTimeout(() => {
+    const paragraphs = document.getElementsByTagName("p");
+    if (paragraphs[r]) {
+        paragraphs[r].innerText = "What is global warming?";
+    } else {
+        console.warn("Paragraph index " + r + " not found.");
+    }
+
+    // Step 2: After another 1s, click send and increment r
+    setTimeout(() => {
+        const sendButton = document.getElementById("composer-submit-button");
+        if (sendButton) {
+            sendButton.click();
+            r++;
+            waitForStreamingToEnd();
+        } else {
+            console.warn("Send button not found.");
+        }
+    }, 1000);
+}, 1000);
+
+
+// Function to wait until streaming ends, then log the output
+function waitForStreamingToEnd() {
+    const checkInterval = 500; // ms
+
+    const intervalId = setInterval(() => {
+        const streamingElems = document.getElementsByClassName("streaming-animation");
+        if (streamingElems.length === 0) {
+            clearInterval(intervalId);
+
+            const chatElements = document.getElementsByClassName("markdown prose dark:prose-invert w-full break-words dark");
+            const index = r - 1;
+            if (index >= 0 && chatElements[index]) {
+                console.log(`Chat response element at index ${index}:`, chatElements[index].innerText || chatElements[index].textContent);
+            } else {
+                console.warn(`Chat response element at index ${index} not found.`);
+            }
+        }
+        // else: still streaming, keep waiting
+    }, checkInterval);
+}
+
+
+// Two
+
+// Step 1: After 1s, set the message
+setTimeout(() => {
+    const msg = document.getElementsByTagName("p")[document.getElementsByTagName("p").length - 1];
+    if (msg) {
+        msg.innerText = "What is global warming?";
+    } else {
+        console.warn("Paragraph index " + r + " not found.");
+    }
+
+    // Step 2: After another 1s, click send and increment r
+    setTimeout(() => {
+        const sendButton = document.getElementById("composer-submit-button");
+        if (sendButton) {
+            sendButton.click();
+            r++;
+            monitorStreamingAndLog();
+        } else {
+            console.warn("Send button not found.");
+        }
+    }, 1000);
+}, 1000);
+
+// Continuously monitor streaming status and log when it ends
+function monitorStreamingAndLog() {
+    const checkInterval = 500; // ms
+
+    const intervalId = setInterval(() => {
+        const streamingElems = document.getElementsByClassName("streaming-animation");
+
+        if (streamingElems.length === 0) {
+            // streaming has ended, log the content
+            const chatElements = document.getElementsByClassName("markdown prose dark:prose-invert w-full break-words dark");
+
+            if (chatElements.length > 0) {
+                const lastElement = chatElements[chatElements.length - 1];
+                console.log("Latest chat response:", lastElement.innerText || lastElement.textContent);
+            } else {
+                console.warn("No chat response elements found.");
+            }
+
+            clearInterval(intervalId); // Stop checking
+        }
+    }, checkInterval);
+}
+
+// Three
+
+// Global index tracker
+let r = 0;
+
+// Main function to send a message and monitor the response
+function sendMessageAndMonitorResponse(msg) {
+    // Step 1: After 1s, set the message
+    setTimeout(() => {
+        const paragraph = document.getElementsByTagName("p")[document.getElementsByTagName("p").length - 1]
+        if (paragraph) {
+            paragraph.innerText = msg; // You can customize this
+        } else {
+            console.warn("Paragraph index " + r + " not found.");
+        }
+
+        // Step 2: After another 1s, click send and increment r
+        setTimeout(() => {
+            const sendButton = document.getElementById("composer-submit-button");
+            if (sendButton) {
+                sendButton.click();
+                r++;
+                monitorStreamingAndLog(); // Start monitoring response
+            } else {
+                console.warn("Send button not found.");
+            }
+        }, 1000);
+    }, 1000);
+}
+
+// Continuously check for streaming, and log latest response once it stops
+(function monitorContinuously() {
+    let isStreaming = false;
+
+    setInterval(() => {
+        const streamingElems = document.getElementsByClassName("streaming-animation");
+
+        if (streamingElems.length > 0) {
+            isStreaming = true; // Detected streaming
+        } else {
+            if (isStreaming) {
+                // Streaming just ended
+                isStreaming = false;
+
+                const chatElements = document.getElementsByClassName("markdown prose dark:prose-invert w-full break-words dark");
+                if (chatElements.length > 0) {
+                    const latest = chatElements[chatElements.length - 1];
+                    console.log("✅ Streaming ended. Latest response element:", latest);
+                    console.log("📝 Response text:", latest.innerText || latest.textContent);
+                } else {
+                    console.warn("⚠️ No chat elements found.");
+                }
+            }
+            // Else: still idle, no new response yet
+        }
+    }, 500); // Check every 500ms
+})();
+
+
+// ✅ To run it once:
+sendMessageAndMonitorResponse("What is global warming");
