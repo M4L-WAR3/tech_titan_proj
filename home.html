@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=home" />
+<style>
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+</style>
+        <title>StudyBuddy</title>
+        <link rel="stylesheet" href="home.css">
+    </head>
+    <body onload="start()">
+        <img id="img"src="wallpaper1.jpg" alt="img">
+        <div class="trans"></div>
+
+        <div class="center"></div>
+            <p class="time"><span id="hrs"></span>:<span id="min"></span></p>
+            <div class="habitList">
+                <h1 class="habit">Daily Habits:</h1>
+                <div id="habitcontainer">
+                    <input class="habit" type="text" placeholder="enter a habit.." id="inp"><button onclick="addToDo(inp.value, 'false')" class="habit" id="btn">+</button><button onclick="saveToDo()" id="save" class="habit">save</button>
+                </div>
+            </div>
+        
+        <div id="leftbar">
+            <div id="pomo">
+                <p class="pomoTime"><span id="pomoMin">00</span>:<span id="pomoSec">00</span></p><br>
+                <button id="dec" class="btn" onclick="dec()">-</button><button id="inc" class="btn" onclick="pomoStart()">start</button><button id="inc" class="btn" onclick="inc()">+</button>
+            </div>
+            <div class="scheduleCont">
+                <button class="weekBtn" onclick="openDay(event, 'Sun')">Sun</button><button class="weekBtn" onclick="openDay(event, 'Mon')">Mon</button><button class="weekBtn" onclick="openDay(event, 'Tue')">Tue</button><button class="weekBtn" onclick="openDay(event, 'Wed')">Wed</button><button class="weekBtn" onclick="openDay(event, 'Thur')">Thur</button><button class="weekBtn" onclick="openDay(event, 'Fri')">Fri</button><button class="weekBtn" onclick="openDay(event, 'Sat')">Sat</button>
+            </div>
+            <div id="schedule">
+                <h3 class="WeekHead" id="WeekHead">...</h3>
+                <input type="text" id="scheduleInp" class="schedulePara"><button class="schedulePara" onclick="scheduleEntry()">+</button>
+                <p id="schedulePara">click on a weekday to see schedule.</p>
+            </div>
+            </div>
+        </div>
+        <div id="rightbar"></div>
+        <script src="code.js"></script>
+    </body>
+</html>
