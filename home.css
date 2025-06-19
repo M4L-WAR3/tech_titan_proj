@@ -209,3 +209,21 @@ input{
     position: absolute;
     left: 100px;
 }
+
+.schedDesc{
+    display:none;
+}
+
+.sched{
+    background-color: rgb(34, 91, 141);
+}
+
+#evtInfo{
+    width:100px;
+    height:100px;
+    background-color: white;
+    position:relative;
+    top: 20px;
+    right:10pc;
+    display:none;
+}

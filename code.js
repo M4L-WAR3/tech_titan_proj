@@ -258,7 +258,6 @@ function getSchedule(){
 let addSchedule= document.getElementsByClassName('addSchedule');
 
 function scheduleAdd(){
-    let eventHolder = document.getElementById('eventConst');
     eventHolder.style.display = 'block';
     console.log('eventHolder');
 }
@@ -266,74 +265,125 @@ function scheduleAdd(){
 let scheduleCounter = 0;
 
 let eventHolder = document.getElementById('eventConst');
-let schedule = document.getElementById('schedule');
-let localEvt;
+//let schedule = document.getElementById('schedule');
+let localEvt = [];
 let eventName = document.getElementById('eventName');
 let eventDate = document.getElementById('eventDate');
 let eventDesc = document.getElementById('eventDesc');
 
-function saveSchedule(){
-
-    localEvt = [
-        eventDate,
-        eventDesc
-    ]
+function saveSchedule(nv, dv, de){
+    //console.log(nv)
 
     let a = scheduleCounter.toString()
     let sched = document.createElement('div');
     sched.classList.add('sched');
     let schedName = document.createElement('p');
-    schedName.innerText = eventName.value;
     let schedTime = document.createElement('span');
-    schedTime.innerText = eventDate.value;
+    let schedDesc = document.createElement('p');
+    if(nv && dv && de){
+        schedName.innerText = nv//eventName.value;
+        schedTime.innerText = dv //eventDate.value;
+        schedDesc.innerText = de
+        console.log('de'+de)
+    }else{
+        schedName.innerText = eventName.value;
+        schedTime.innerText = eventDate.value;
+        schedDesc.innerText = eventDesc.value;
+    }
+    schedDesc.classList.add('schedDesc');
+    sched.appendChild(schedDesc);
+    sched.classList.add('sched')
+    console.log(schedDesc)
+    sched.addEventListener('click', openDesc)
+
+    function openDesc(){
+        let evtInfo = document.getElementById('evtInfo');
+        evtInfo.style.display = 'block';
+        evtInfo.innerText = 'description: '+schedDesc.innerText;
+    }
+
     schedule.appendChild(sched);
-    schedName.classList.add('schedName')
-    schedName.id = 'schedName' + a;
+    schedName.classList.add('schedName');
+    //schedName.id = 'schedName' + a;
     sched.appendChild(schedName);
     schedTime.classList.add('schedTime');
-    schedTime.id = 'schedTime' + a;
+    //schedTime.id = 'schedTime' + a;
     sched.appendChild(schedTime);
     eventHolder.style.display = 'none';
     scheduleCounter++;
+    //let saveBtn = document.getElementById('saveBtn');
+    //saveBtn.addEventListener('click', localSchedSave);
+
+
+    let evtArr = [
+        schedDesc.innerText,
+        schedName.innerText,
+        schedTime.innerText
+    ]
+    localEvt.push(evtArr);
+    //console.log(localEvt)
 }
 
-function localSchedSave(n, d){
-    let events = document.getElementsByClassName('sched'), i;
-    //console.log(evtTime.innerText);
-    for(i=0;i < events.length; i++){
-        console.log(i)
-        let k = 's'+ i;
-
-    
-        if(localStorage.getItem(k) == true){
+function localSchedSave(){
+    console.log('localSchedSave')
+    let i;
+    for(i = 0; i < i+1; i++){
+        let k = 's'+i;
+        console.log(k)
+        if(localStorage.getItem(k)){
+            //console.log('sched Save: '+localStorage.getItem(k))
             localStorage.removeItem(k);
+        }else{
+            localSchedSave2()
+            break;
         }
-        
-        a=i.toString()
-        console.log(a)
-        let evtTime = document.getElementById(d+ a);
-        let evtName = document.getElementById(n+ a);
-        console.log(evtTime, evtName)
-        let v = evtName.innerText + '/' +evtTime.innerText;
+    }
+}
+
+function localSchedSave2(){
+    console.log(localEvt)
+    let i;
+    for(i=0;i<localEvt.length;i++){
+        let k = 's'+i;
+        let v = localEvt[i];
+        console.log(k, v);
         localStorage.setItem(k, v);
     }
-    localStorage.setItem('schedCount', scheduleCounter);
 }
 
 function localSchedGet(){
-    scheduleCounter = parseInt(localStorage.getItem('schedCount'));
-    let i, sum = '',j, sum3;
-    for(i=0;i<scheduleCounter; i++){
-        let k = 's'+i;
-        if(localStorage.getItem(k)[i] == '/'){
-            sum+= localStorage.getItem(k)[i];
-            sum2 = localStorage.getItem(k).replace(sum, '');
-            for(j = 0; j < sum2.length; j++){
-                sum3 += sum2[j];
-            }
-        }else{
-            sum+= localStorage.getItem(k)[i];
+    for(let i = 0; i < localStorage.length; i++){
+        let k = 's'+i, sum = '',sum2 = '', sum3 = '';
+        if(localStorage.getItem(k) == undefined){
+            break;
         }
-        localSchedSave(sum, sum3);
+        let localItm = localStorage.getItem(k)
+        console.log(localItm);
+        for(let j = 0; j < localItm.length; j++){
+            if(localItm[j] == ','){
+                //console.log(sum)
+                for(j++; j<localItm.length; j++){
+                    if(localItm[j] == ','){
+                        //console.log(sum2)
+                        for(j++; j<localItm.length; j++){
+                            
+                            sum3 += localItm[j];
+                        }
+                    }
+                    if(localItm[j] == undefined){continue}
+                    sum2 += localItm[j];
+                }
+                saveSchedule(sum, sum2, sum3);
+                console.log('sum2'+sum2)
+                break;
+            }else{
+                sum+= localItm[j];
+            }
+        }
     }
+}
+
+function closeInfo(){
+    let evtInfo = document.getElementById('evtInfo');
+    evtInfo.style.display = 'none'
 }

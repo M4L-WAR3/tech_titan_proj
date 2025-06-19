@@ -43,7 +43,10 @@
                     Details of Event: <input type="text" placeholder="eg: syllabus: ..." id="eventDesc"><br>
                     <button onclick="saveSchedule()">save</button>
                 </div>
-                <button onclick="localSchedSave('schedName', 'schedTime')">enter</button>
+                <button id="saveBtn" onclick="localSchedSave()">enter</button>
+                <div id="evtInfo">
+                    <button onclick="closeInfo()">x</button>
+                </div>
             </div>
             </div>
         </div>
