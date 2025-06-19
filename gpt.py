@@ -13,11 +13,14 @@ PORT = 65432
 
 def setup_driver():
     options = uc.ChromeOptions()
+    #options.add_argument('--headless')  # Run headless
+    #options.add_argument('--window-size=1920,1080')  # Optional: simulate a large screen
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")
     caps = options.to_capabilities()
     caps['goog:loggingPrefs'] = {'browser': 'ALL'}
     driver = uc.Chrome(options=options, desired_capabilities=caps)
+    #driver.set_window_position(-10000, 0)  # Moves it offscreen
     driver.delete_all_cookies()
     return driver
 
@@ -112,8 +115,7 @@ sendMessageAndMonitorResponse({json.dumps(prompt_msg)});
 
     finally:
         #input("Press Enter to close browser...")
-        #driver.quit()
-        pass
+        driver.quit()
 
 def handle_client(conn, addr):
     print(f"Connected by {addr}")
