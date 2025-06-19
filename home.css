@@ -182,3 +182,30 @@ body{
     left: 10px;
     color:rgb(28, 66, 24)
 }
+
+.weekHead{
+    position:relative;
+    top: 10px;
+    left: 20px;
+    font-size: 30px;
+}
+
+.eventConst{
+    background-color: brown;
+    color: black;
+    position: relative;
+    width: 300px;
+    height: 200px;
+    display:none;
+}
+
+input{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.schedTime{
+    color: grey;
+    position: absolute;
+    left: 100px;
+}

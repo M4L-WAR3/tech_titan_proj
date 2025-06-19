@@ -34,13 +34,16 @@
                 <p class="pomoTime"><span id="pomoMin">00</span>:<span id="pomoSec">00</span></p><br>
                 <button id="dec" class="btn" onclick="dec()">-</button><button id="inc" class="btn" onclick="pomoStart()">start</button><button id="inc" class="btn" onclick="inc()">+</button>
             </div>
-            <div class="scheduleCont">
-                <button class="weekBtn" onclick="openDay(event, 'Sun')">Sun</button><button class="weekBtn" onclick="openDay(event, 'Mon')">Mon</button><button class="weekBtn" onclick="openDay(event, 'Tue')">Tue</button><button class="weekBtn" onclick="openDay(event, 'Wed')">Wed</button><button class="weekBtn" onclick="openDay(event, 'Thur')">Thur</button><button class="weekBtn" onclick="openDay(event, 'Fri')">Fri</button><button class="weekBtn" onclick="openDay(event, 'Sat')">Sat</button>
-            </div>
             <div id="schedule">
-                <h3 class="WeekHead" id="WeekHead">...</h3>
-                <input type="text" id="scheduleInp" class="schedulePara"><button class="schedulePara" onclick="scheduleEntry()">+</button>
-                <p id="schedulePara">click on a weekday to see schedule.</p>
+                <button class="newEvent" id="newEvent" onclick="scheduleAdd()">+</button><h3 class="weekHead">Upcoming events:</h3>
+                <p id="schedulePara">no upcoming events...</p>
+                <div class="eventConst" id="eventConst">
+                    Name of Event:<input type="text" placeholder="eg: Weekly Test" id="eventName"><br>
+                    Date of Event: <input type="text" placeholder="eg: 2/12/24" id="eventDate"><br>
+                    Details of Event: <input type="text" placeholder="eg: syllabus: ..." id="eventDesc"><br>
+                    <button onclick="saveSchedule()">save</button>
+                </div>
+                <button onclick="localSchedSave('schedName', 'schedTime')">enter</button>
             </div>
             </div>
         </div>

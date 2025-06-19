@@ -123,6 +123,7 @@ function start(){
         m.create()
     }  
     setInterval(draw, 1000);
+    localSchedGet()
 }
 
 function draw(){
@@ -253,4 +254,86 @@ function scheduleSave(){
 function getSchedule(){
     let m = new DaySchedule(1, 2);
     m.create();
+}
+let addSchedule= document.getElementsByClassName('addSchedule');
+
+function scheduleAdd(){
+    let eventHolder = document.getElementById('eventConst');
+    eventHolder.style.display = 'block';
+    console.log('eventHolder');
+}
+
+let scheduleCounter = 0;
+
+let eventHolder = document.getElementById('eventConst');
+let schedule = document.getElementById('schedule');
+let localEvt;
+let eventName = document.getElementById('eventName');
+let eventDate = document.getElementById('eventDate');
+let eventDesc = document.getElementById('eventDesc');
+
+function saveSchedule(){
+
+    localEvt = [
+        eventDate,
+        eventDesc
+    ]
+
+    let a = scheduleCounter.toString()
+    let sched = document.createElement('div');
+    sched.classList.add('sched');
+    let schedName = document.createElement('p');
+    schedName.innerText = eventName.value;
+    let schedTime = document.createElement('span');
+    schedTime.innerText = eventDate.value;
+    schedule.appendChild(sched);
+    schedName.classList.add('schedName')
+    schedName.id = 'schedName' + a;
+    sched.appendChild(schedName);
+    schedTime.classList.add('schedTime');
+    schedTime.id = 'schedTime' + a;
+    sched.appendChild(schedTime);
+    eventHolder.style.display = 'none';
+    scheduleCounter++;
+}
+
+function localSchedSave(n, d){
+    let events = document.getElementsByClassName('sched'), i;
+    //console.log(evtTime.innerText);
+    for(i=0;i < events.length; i++){
+        console.log(i)
+        let k = 's'+ i;
+
+    
+        if(localStorage.getItem(k) == true){
+            localStorage.removeItem(k);
+        }
+        
+        a=i.toString()
+        console.log(a)
+        let evtTime = document.getElementById(d+ a);
+        let evtName = document.getElementById(n+ a);
+        console.log(evtTime, evtName)
+        let v = evtName.innerText + '/' +evtTime.innerText;
+        localStorage.setItem(k, v);
+    }
+    localStorage.setItem('schedCount', scheduleCounter);
+}
+
+function localSchedGet(){
+    scheduleCounter = parseInt(localStorage.getItem('schedCount'));
+    let i, sum = '',j, sum3;
+    for(i=0;i<scheduleCounter; i++){
+        let k = 's'+i;
+        if(localStorage.getItem(k)[i] == '/'){
+            sum+= localStorage.getItem(k)[i];
+            sum2 = localStorage.getItem(k).replace(sum, '');
+            for(j = 0; j < sum2.length; j++){
+                sum3 += sum2[j];
+            }
+        }else{
+            sum+= localStorage.getItem(k)[i];
+        }
+        localSchedSave(sum, sum3);
+    }
 }
