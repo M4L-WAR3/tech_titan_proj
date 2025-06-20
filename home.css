@@ -139,7 +139,7 @@ body{
 
 #schedule{
     color: black;
-    width: 40pc;
+    width: 30pc;
     height: 20pc;
     background-color: aliceblue;
     position: absolute;
@@ -205,7 +205,7 @@ input{
 }
 
 .schedTime{
-    color: grey;
+    color: rgb(201, 220, 224);
     position: absolute;
     left: 100px;
 }
@@ -215,6 +215,8 @@ input{
 }
 
 .sched{
+    padding-bottom: 5px;
+    height:25px;
     background-color: rgb(34, 91, 141);
 }
 
@@ -226,4 +228,17 @@ input{
     top: 20px;
     right:10pc;
     display:none;
+}
+
+.schedTime{
+    height:20px;
+    position: relative;
+    left:25pc;
+    bottom: 40px;
+}
+
+.closeInfo{
+    position: absolute;
+    top: 0px;
+    right:110px;
 }

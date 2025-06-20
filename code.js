@@ -155,7 +155,7 @@ function loadToDos(){
         m.create()
     }  
 }
-
+let pomoCounter = 0;
 function inc(){
     let mins = parseInt(document.getElementById('pomoMin').innerText);
     //console.log(mins)
@@ -175,9 +175,19 @@ function dec(){
 function pomo(){
     let mins = parseInt(document.getElementById('pomoMin').innerText);
     let secs = parseInt(document.getElementById('pomoSec').innerText);
+    let nextMins = mins - 1;
+    console.log(nextMins);
+    if(nextMins == 9){document.getElementById('pomoMin').innerText = '0'+(mins)}
+    if(nextMins < 10){
+        document.getElementById('pomoMin').innerText = '0'+(mins);
+    }
     if(secs !== 0){
-        console.log(secs)
-        document.getElementById('pomoSec').innerText = secs - 1;
+        //console.log(secs)
+        if(secs < 10){
+            document.getElementById('pomoSec').innerText = '0'+(secs - 1);
+        }else{
+            document.getElementById('pomoSec').innerText = secs - 1;
+        }
     }else{
         document.getElementById('pomoSec').innerText = 59;
         document.getElementById('pomoMin').innerText = mins-1;
@@ -187,12 +197,19 @@ function pomo(){
         clearInterval(pomoInterval);
         document.getElementById('pomoSec').innerText = '00';
         document.getElementById('pomoMin').innerText = '00'
+        pomoCounter = 0;
     }
 }
 
 function pomoStart(){
-    pomoInterval = setInterval(pomo, 1000);
-    pomoInterval;
+    if(pomoCounter == 0){
+        console.log('start!!')
+        pomoInterval = setInterval(pomo, 1000);
+        pomoCounter = 1
+    }else{
+        console.log('stop!!')
+    }
+    //pomoCounter;
 }
 
 function saveToDo(){
@@ -201,7 +218,7 @@ function saveToDo(){
         console.log(localArr[i])
         localStorage.setItem(i, localArr[i]);
     }
-    scheduleSave();
+    localSchedSave();
 }
 
 function openDay(evt, day) {
@@ -248,7 +265,7 @@ function scheduleSave(){
     for(let i = 0; i < li.length; i++){
         value += ' '+ li[i].innerText;
     }
-    localStorage.setItem(weekDay.innerText, value);
+    //localStorage.setItem(weekDay.innerText, value);
 }
 
 function getSchedule(){
@@ -272,7 +289,8 @@ let eventDate = document.getElementById('eventDate');
 let eventDesc = document.getElementById('eventDesc');
 
 function saveSchedule(nv, dv, de){
-    //console.log(nv)
+    let schedulePara = document.getElementById('schedulePara');
+    schedulePara.innerText = '';
 
     let a = scheduleCounter.toString()
     let sched = document.createElement('div');
@@ -299,10 +317,15 @@ function saveSchedule(nv, dv, de){
     function openDesc(){
         let evtInfo = document.getElementById('evtInfo');
         evtInfo.style.display = 'block';
+        let btn = document.createElement('button');
+        btn.innerText = 'x';
+        btn.classList.add('closeInfo')
+        btn.addEventListener('click', closeInfo);
         evtInfo.innerText = 'description: '+schedDesc.innerText;
+        evtInfo.appendChild(btn);
     }
-
-    schedule.appendChild(sched);
+    let listCont = document.getElementById('listCont');
+    listCont.appendChild(sched);
     schedName.classList.add('schedName');
     //schedName.id = 'schedName' + a;
     sched.appendChild(schedName);
@@ -316,9 +339,9 @@ function saveSchedule(nv, dv, de){
 
 
     let evtArr = [
-        schedDesc.innerText,
         schedName.innerText,
-        schedTime.innerText
+        schedTime.innerText,
+        schedDesc.innerText
     ]
     localEvt.push(evtArr);
     //console.log(localEvt)
@@ -329,7 +352,7 @@ function localSchedSave(){
     let i;
     for(i = 0; i < i+1; i++){
         let k = 's'+i;
-        console.log(k)
+        //console.log(k)
         if(localStorage.getItem(k)){
             //console.log('sched Save: '+localStorage.getItem(k))
             localStorage.removeItem(k);
