@@ -330,10 +330,12 @@ input{
 }
 
 .yes{
-    display:none;
     z-index: 5;
     position: relative;
-    bottom: 1000px
+    width: 400px;
+    height: 460px;
+    left: 20px;
+    top: 20px
 }
 
 .frameholder{
