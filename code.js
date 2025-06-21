@@ -183,7 +183,7 @@ function pomo(){
     }
     if(secs !== 0){
         //console.log(secs)
-        if(secs < 10){
+        if(secs <= 10){
             document.getElementById('pomoSec').innerText = '0'+(secs - 1);
         }else{
             document.getElementById('pomoSec').innerText = secs - 1;
