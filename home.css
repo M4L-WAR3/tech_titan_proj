@@ -4,7 +4,7 @@ body{
     font-optical-sizing: auto;
     font-weight: 200;
     font-style: normal;
-    color: aliceblue;
+    color: rgb(245, 237, 216);
 }
 
 
@@ -50,6 +50,10 @@ body{
     margin: auto;
 }
 
+.h1{
+    color: rgb(245, 237, 216);
+}
+
 .habitList{
     position: absolute;
     top:150px;
@@ -58,12 +62,13 @@ body{
     width: 25%;
     height: 500px;
     align-items: flex-end;
+    color: rgb(245, 237, 216);
 }
 .habit{
     left: 5%;
     position: relative;
     z-index: 2;
-    color: black;
+    color: rgb(245, 237, 216);
     opacity: 1;
 }
 .hab{
@@ -84,7 +89,7 @@ body{
     width: 15px;
     height: 15px;
     border-radius: 20pc;
-    border: 2px solid black;
+    border: 2px solid rgb(245, 237, 216);
 }
 
 .cont{
@@ -99,24 +104,39 @@ body{
 #pomo{
     z-index: 2;
     position:absolute;
-    top: 10px;
+    top: 20px;
     right: 10pc;
-    background-color: aliceblue;
     width: 20pc;
     height: 10pc;
-    color: black;
+    color: rgb(245, 237, 216);
     font-size: 50px;
 }
 
 .pomoTime{
     position: relative;
-    top: 10px;
+    padding-left: 30%;
+    padding-bottom: 10px;
+    bottom:10%;
 }
+
+button{
+    color: rgb(245, 237, 216);
+    background-color: rgb(48, 74, 54);
+    border: none;
+    margin-left: 5px;
+}
+
 .btn{
     position: relative;
+    left: 30%;
     padding: 10px;
     margin: 0%;
-    bottom: 8pc;
+    bottom: 9pc;
+    color: rgb(245, 237, 216);
+    background-color: rgb(48, 74, 54);
+    border: none;
+    margin-left: 5px;
+    border-radius: 5px;
 }
 
 .center{
@@ -139,13 +159,13 @@ body{
 
 #schedule{
     color: black;
-    width: 30pc;
+    width: 20pc;
     height: 20pc;
-    background-color: aliceblue;
+    color: rgb(245, 237, 216);
     position: absolute;
     z-index: 2;
     bottom: 5pc;
-    left: 50pc;
+    left: 1050px;
 }
 .scheduleCont{
     width: 40pc;
@@ -164,7 +184,7 @@ body{
 
 .WeekHead{
     position: relative;
-    color: black;
+    color: rgb(245, 237, 216);
     font-size: xx-large;
     bottom: 15px
 }
@@ -191,12 +211,36 @@ body{
 }
 
 .eventConst{
-    background-color: brown;
-    color: black;
     position: relative;
+    z-index: 2;
+    bottom: 5pc;
+    left: 1050px;
     width: 300px;
     height: 200px;
-    display:none;
+    display:block;
+    left: 742px;
+    bottom: 250px;
+    
+}
+
+.schedName{
+    position: relative;
+    left: 10px;
+}
+
+.schedEvtDec{
+    position: relative;
+    z-index: 1;
+    bottom: 5pc;
+    left: 1050px;
+    color: black;
+    width: 300px;
+    height: 200px;
+    left: 742px;
+    bottom: 475px;
+    background-color: rgb(141, 182, 228);
+    opacity:0.3;
+    border-radius: 5px;
 }
 
 input{
@@ -217,7 +261,10 @@ input{
 .sched{
     padding-bottom: 5px;
     height:25px;
-    background-color: rgb(34, 91, 141);
+    background-color: rgb(45, 117, 84);
+    width: 280px;
+    position: relative;
+    left: 20px;
 }
 
 #evtInfo{
@@ -233,7 +280,7 @@ input{
 .schedTime{
     height:20px;
     position: relative;
-    left:25pc;
+    left:14pc;
     bottom: 40px;
 }
 
@@ -241,4 +288,77 @@ input{
     position: absolute;
     top: 0px;
     right:110px;
+}
+
+.motiv{
+    position:absolute;
+    width:40%;
+    height:100%;
+    font-size: 30px;
+    z-index:0;
+    left: 350px;
+    top: 40px;
+    margin:0px;
+}
+
+.pomoDec{
+    z-index: 1;
+    position:absolute;
+    top: 20px;
+    right: 10pc;
+    width: 20pc;
+    height: 10pc;
+    color: black;
+    font-size: 50px;
+    background-color: rgb(141, 157, 144);
+    opacity:0.3;
+    border-radius: 10px;
+}
+
+.schedDec{
+    border-radius: 10px;
+    color: black;
+    width: 20pc;
+    height: 20pc;
+    background-color: rgb(141, 157, 144);
+    position: absolute;
+    z-index: 1;
+    bottom: 5pc;
+    left: 1050px;
+    opacity:0.3;
+    
+}
+
+.yes{
+    display:none;
+    z-index: 5;
+    position: relative;
+    bottom: 1000px
+}
+
+.frameholder{
+    width:440px;
+    height:500px;
+    background-color: rgb(245, 237, 216);
+    position:relative;
+    bottom:610px;
+    left:525px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.flask{
+    width:100pc;
+    height:100pc;
+}
+
+.tablinks{
+    position:relative;
+    bottom:610px;
+    left:520px;
+    padding:10px;
+    padding-left: 40px;
+    padding-right:40px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }

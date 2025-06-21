@@ -56,7 +56,7 @@ function addToDo(n, c){
     let check = document.createElement('div');
     check.classList.add('check');
     if(c=='true'){
-        check.style.backgroundColor = 'black';
+        check.style.backgroundColor = 'rgb(245, 237, 216)';
     }
     hab.appendChild(check);
     check.addEventListener( 'click', changeCol);
@@ -76,7 +76,7 @@ function addToDo(n, c){
     }
 
     function changeCol(){
-        check.style.backgroundColor = 'black';
+        check.style.backgroundColor = 'rgb(245, 237, 216)';
         for(let i = 0; i < localArr.length; i++){
             console.log(localArr[i], cont)
             if(localArr[i][0] == cont.innerText){
@@ -101,6 +101,25 @@ function addToDo(n, c){
     //console.log(localStorage.getItem(store[0]));
 }
 function start(){
+    let motiv = document.getElementById('motiv');
+    let n = Math.random() * 8;
+    if(n<1){
+        motiv.innerText = "Every step forward counts, no matter how small--keep moving toward your dreams."
+    }else if(n<2){
+        motiv.innerText = "Challenges are just opportunities in disguise; embrace them and grow."
+    }else if(n<3){
+        motiv.innerText = "Your potential is limitless when you believe in yourself and take action."
+    }else if(n<4){
+        motiv.innerText = "Success is not the absence of obstacles, but the courage to push through them."
+    }else if(n<5){
+        motiv.innerText = "Your future is built by the choices you make today--choose boldly."
+    }else if(n<6){
+        motiv.innerText = "You do not need to be perfect to start, but you need to start to become great."
+    }else if(n<7){
+        motiv.innerText = "The only limits are the ones you set for yourself--break free and soar."
+    }else if(n<8){
+        motiv.innerText = "Turn your setbacks into comebacks with determination and grit."
+    }
     for (let i=0; i<i+1; i++){
         let k;
         if(localStorage.getItem(i)==undefined){
@@ -130,6 +149,15 @@ function draw(){
     const d = new Date();
     hrs.innerHTML = d.getHours();
     min.innerHTML = d.getMinutes();
+
+    let hours = parseInt(hrs.innerHTML);
+    let mins = parseInt(min.innerHTML);
+    if(hours < 10){
+        hrs.innerHTML = '0'+d.getHours();
+    }
+    if(mins < 10){
+        hrs.innerHTML = '0'+d.getHours();
+    }
 }
 
 function loadToDos(){
@@ -163,12 +191,20 @@ function inc(){
 }
 
 function dec(){
+    let t = 0
     let mins = parseInt(document.getElementById('pomoMin').innerText);
     //console.log(mins)
+    if(mins == 10){
+        console.log(mins)
+        document.getElementById('pomoMin').innerText = '00'
+        t = 1
+    }
     if(mins == 0){
         alert("Time cannot be negative!!")
     }else{
-        document.getElementById('pomoMin').innerText = mins - 10;
+        if(t == 0){
+            document.getElementById('pomoMin').innerText = mins - 10;
+        }
     }
 }
 
@@ -176,14 +212,14 @@ function pomo(){
     let mins = parseInt(document.getElementById('pomoMin').innerText);
     let secs = parseInt(document.getElementById('pomoSec').innerText);
     let nextMins = mins - 1;
+    console.log('0'+mins)
     console.log(nextMins);
-    if(nextMins == 9){document.getElementById('pomoMin').innerText = '0'+(mins)}
+    if(nextMins == 9){document.getElementById('pomoMin').innerText = '0'+mins}
     if(nextMins < 10){
         document.getElementById('pomoMin').innerText = '0'+(mins);
     }
     if(secs !== 0){
-        //console.log(secs)
-        if(secs <= 10){
+        if(secs < 10 || secs == 10){
             document.getElementById('pomoSec').innerText = '0'+(secs - 1);
         }else{
             document.getElementById('pomoSec').innerText = secs - 1;
@@ -276,12 +312,14 @@ let addSchedule= document.getElementsByClassName('addSchedule');
 
 function scheduleAdd(){
     eventHolder.style.display = 'block';
+    eventDecor.style.display = 'block';
     console.log('eventHolder');
 }
 
 let scheduleCounter = 0;
 
 let eventHolder = document.getElementById('eventConst');
+let eventDecor = document.getElementById('schedEvtDec');
 //let schedule = document.getElementById('schedule');
 let localEvt = [];
 let eventName = document.getElementById('eventName');
@@ -313,6 +351,21 @@ function saveSchedule(nv, dv, de){
     sched.classList.add('sched')
     console.log(schedDesc)
     sched.addEventListener('click', openDesc)
+    sched.addEventListener('dblclick', delSched);
+
+    function delSched(){
+        let schedNames = document.getElementById('schedName')
+        for(let i = 0; i < localEvt.length; i++){
+            if(localEvt[i][0] === schedName.innerText){
+                console.log('seen')
+                localEvt.splice(i,1);
+            }
+        }
+        //console.log(localEvt[0][0]);
+        //console.log('schedName: '+schedName.innerText);
+        //console.log('delSched')
+        listCont.removeChild(sched);
+    }
 
     function openDesc(){
         let evtInfo = document.getElementById('evtInfo');
@@ -333,6 +386,7 @@ function saveSchedule(nv, dv, de){
     //schedTime.id = 'schedTime' + a;
     sched.appendChild(schedTime);
     eventHolder.style.display = 'none';
+    eventDecor.style.display = 'none';
     scheduleCounter++;
     //let saveBtn = document.getElementById('saveBtn');
     //saveBtn.addEventListener('click', localSchedSave);
@@ -344,7 +398,7 @@ function saveSchedule(nv, dv, de){
         schedDesc.innerText
     ]
     localEvt.push(evtArr);
-    //console.log(localEvt)
+    console.log(localEvt)
 }
 
 function localSchedSave(){
@@ -409,4 +463,13 @@ function localSchedGet(){
 function closeInfo(){
     let evtInfo = document.getElementById('evtInfo');
     evtInfo.style.display = 'none'
+}
+
+function frame(evt, link) {
+let iframe = document.getElementsByClassName('yes');
+for(let i = 0; i < iframe.length; i++){
+    iframe[i].style.display = 'none'
+}
+iframe[link].style.display = 'block'
+//console.log(iframe[link])
 }
