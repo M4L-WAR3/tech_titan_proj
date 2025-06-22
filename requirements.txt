@@ -1,8 +1,4 @@
-disutil
-undetected_chromedriver
-selenium.webdriver.common.by
-setuptools
-socket
-threading
-argparse
-Flask
+undetected-chromedriver
+pywin32
+flask
+beautifulsoup4
