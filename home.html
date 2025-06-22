@@ -36,7 +36,7 @@
             </div>
             <div class="eventConst" id="eventConst">
                     - Name of Event:<input type="text" placeholder="eg: Weekly Test" id="eventName"><br>
-                    - Date of Event: <input type="text" placeholder="eg: 2/12/24" id="eventDate"><br>
+                    - Date of Event: <input type="text" placeholder="DD/MM/YY" id="eventDate"><br>
                     - Details of Event: <input type="text" placeholder="eg: syllabus: ..." id="eventDesc"><br>
                     <button onclick="saveSchedule()">save</button>
                 </div>
@@ -46,7 +46,7 @@
         </div>
         <div id="flask">
             <button class="tablinks" onclick="frame(event, '0')">tab1</button><button class="tablinks" onclick="frame(event, '1')">tab2</button><button class="tablinks" onclick="frame(event, '2')">tab3</button><button class="tablinks" onclick="frame(event, '3')">tab4</button>
-            <div class="frameHolder">
+            <div class="frameHolder" id="frameHolder">
                     <iframe src="link1" frameborder="0" id="link1" class="yes"></iframe>
                     <iframe src="link2" frameborder="0" id="link2" class="yes"></iframe>
                     <iframe src="link3" frameborder="0" id="link3" class="yes"></iframe>

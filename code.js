@@ -314,6 +314,13 @@ function scheduleAdd(){
     eventHolder.style.display = 'block';
     eventDecor.style.display = 'block';
     console.log('eventHolder');
+    let frameHolder = document.getElementById('frameHolder');
+    frameHolder.style.bottom = '1010px'
+    let tablinks = document.getElementsByClassName('tablinks');
+    tablinks[0].style.bottom = '1010px'
+    tablinks[1].style.bottom = '1010px'
+    tablinks[2].style.bottom = '1010px'
+    tablinks[3].style.bottom = '1010px'
 }
 
 let scheduleCounter = 0;
@@ -346,6 +353,7 @@ function saveSchedule(nv, dv, de){
         schedTime.innerText = eventDate.value;
         schedDesc.innerText = eventDesc.value;
     }
+    
     schedDesc.classList.add('schedDesc');
     sched.appendChild(schedDesc);
     sched.classList.add('sched')
@@ -377,14 +385,42 @@ function saveSchedule(nv, dv, de){
         evtInfo.innerText = 'description: '+schedDesc.innerText;
         evtInfo.appendChild(btn);
     }
+    let c = 0;
     let listCont = document.getElementById('listCont');
     listCont.appendChild(sched);
+    if(schedTime.innerText[2] !== '/' && schedTime.innerText[5] !== '/'){
+        alert('incorrect format!!'+schedTime.innerText[2])
+        listCont.removeChild(sched)
+        c=1
+    }
     schedName.classList.add('schedName');
     //schedName.id = 'schedName' + a;
     sched.appendChild(schedName);
     schedTime.classList.add('schedTime');
     //schedTime.id = 'schedTime' + a;
     sched.appendChild(schedTime);
+    let activity = document.createElement('div')
+activity.classList.add('activity')
+    let sum
+    for(let j = 0; j < schedTime.innerText.length; j++){
+        if(j==2){continue}
+        if(j==5){continue}
+        sum+=schedTime.innerText[j];
+        sum.replace('undefined','')
+        let sum1, sum2, sum3;
+        sum1 = sum[0] +sum[1]
+        sum2 = sum[2] + sum[3]
+        sum3 = sum[4] + sum[5]
+        let b = new Date()
+        if(parseInt(sum1) == b.getDate() && parseInt(sum2) == b.getMonth()){
+            activity.style.backgroundColor = 'green'
+        }
+        console.log(sum1)
+        console.log(sum2)
+    }
+    console.log(schedTime)
+    console.log(sum)
+    //sched.appendChild(activity)
     eventHolder.style.display = 'none';
     eventDecor.style.display = 'none';
     scheduleCounter++;
@@ -397,8 +433,18 @@ function saveSchedule(nv, dv, de){
         schedTime.innerText,
         schedDesc.innerText
     ]
-    localEvt.push(evtArr);
-    console.log(localEvt)
+    if(c == 0){
+        localEvt.push(evtArr);
+    }
+    //console.log(localEvt)
+    
+    let frameHolder = document.getElementById('frameHolder');
+    frameHolder.style.bottom = '610px'
+    let tablinks = document.getElementsByClassName('tablinks');
+    tablinks[0].style.bottom = '610px'
+    tablinks[1].style.bottom = '610px'
+    tablinks[2].style.bottom = '610px' 
+    tablinks[3].style.bottom = '610px'
 }
 
 function localSchedSave(){

@@ -217,7 +217,7 @@ button{
     left: 1050px;
     width: 300px;
     height: 200px;
-    display:block;
+    display:none;
     left: 742px;
     bottom: 250px;
     
@@ -241,6 +241,7 @@ button{
     background-color: rgb(141, 182, 228);
     opacity:0.3;
     border-radius: 5px;
+    display:none;
 }
 
 input{
@@ -330,12 +331,23 @@ input{
 }
 
 .yes{
+    display:none;
     z-index: 5;
     position: relative;
     width: 400px;
     height: 460px;
     left: 20px;
     top: 20px
+}
+
+.activity{
+    position:relative;
+    top:-55px;
+    left: 200px;
+    width:10px;
+    height:10px;
+    border-radius: 50%;
+    background-color: darkred;
 }
 
 .frameholder{
