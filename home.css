@@ -89,7 +89,7 @@ body{
     width: 15px;
     height: 15px;
     border-radius: 20pc;
-    border: 2px solid rgb(245, 237, 216);
+    border: 2px solid black;
 }
 
 .cont{
@@ -238,7 +238,7 @@ button{
     height: 200px;
     left: 742px;
     bottom: 475px;
-    background-color: rgb(141, 182, 228);
+    background-color: seagreen;
     opacity:0.3;
     border-radius: 5px;
     display:none;
@@ -256,6 +256,9 @@ input{
 }
 
 .schedDesc{
+    background-color: darkseagreen;
+    border-radius: 5px;
+    height:200px;
     display:none;
 }
 
@@ -270,12 +273,13 @@ input{
 
 #evtInfo{
     width:100px;
-    height:100px;
-    background-color: white;
+    height:150px;
+    background-color:darkseagreen;
     position:relative;
     top: 20px;
-    right:10pc;
+    right:-350px;
     display:none;
+    border-radius:5px;
 }
 
 .schedTime{
@@ -375,4 +379,11 @@ input{
     padding-right:40px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+}
+
+input{
+    border:none;
+    border-radius:5px;
+    color: saddlebrown;
+    background-color: burlywood;
 }
