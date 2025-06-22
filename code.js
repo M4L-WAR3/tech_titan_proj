@@ -156,7 +156,7 @@ function draw(){
         hrs.innerHTML = '0'+d.getHours();
     }
     if(mins < 10){
-        hrs.innerHTML = '0'+d.getHours();
+        min.innerHTML = '0'+d.getHours();
     }
 }
 
