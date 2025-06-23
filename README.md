@@ -1,10 +1,15 @@
-```markdown
-# Tech Titan Project 🚀
+## Tech Titan Project 🚀
 
 A Python‑based local server application that bundles multiple helper executables (`gpt`, `client`, `hide_window`) and serves an HTML interface via Flask.
 
 ---
+## Video Demo
 
+Check out the video demo below to see the project in action:
+
+<iframe allow="fullscreen" allowfullscreen height="466" src="https://streamable.com/e/a25ta7?" width="848" style="border:none;"></iframe>
+
+---
 ## 🔧 Features
 
 - **Self‑extracting executable**: Uses a bundled `dependencies.zip` to extract helper tools at runtime.
@@ -120,4 +125,3 @@ This project is released under the [MIT License](LICENSE). Feel free to reuse an
 ---
 
 > ✉️ **Need help?** Open an issue or submit a pull request. Happy coding!
-```
