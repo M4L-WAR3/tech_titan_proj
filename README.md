@@ -7,7 +7,7 @@ A Python‑based local server application that bundles multiple helper executabl
 
 Check out the video demo below to see the project in action:
 
-<iframe allow="fullscreen" allowfullscreen height="466" src="https://streamable.com/e/a25ta7?" width="848" style="border:none;"></iframe>
+Watch the demo here: [Streamable Video](https://streamable.com/e/a25ta7)
 
 ---
 ## 🔧 Features
