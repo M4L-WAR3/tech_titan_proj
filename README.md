@@ -7,7 +7,7 @@ A Python‑based local server application that bundles multiple helper executabl
 
 Check out the video demo below to see the project in action:
 
-Watch the demo here: [Streamable Video](https://streamable.com/e/a25ta7)
+Watch the demo here: [Google Drive Video](https://drive.google.com/file/d/1nZn1lrdcfsuOzGWi7cm23l_lXpN3g_rZ/view?usp=drivesdk)
 
 ---
 ## 🔧 Features
